@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        function createLetterImage(letter) {
+  // Create canvas
+  const canvas = document.createElement('canvas');
+  canvas.width = 256;
+  canvas.height = 256;
+  const ctx = canvas.getContext('2d');
+
+  // Fill background black
+  ctx.fillStyle = 'black';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Draw centered capital letter
+  ctx.fillStyle = 'white';
+  ctx.font = 'bold 180px Arial';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(letter.toUpperCase(), canvas.width / 2, canvas.height / 2);
+
+  // Convert canvas to PNG data URL
+  const pngDataUrl = canvas.toDataURL('image/png');
+
+  return pngDataUrl; // You can use it as src for <img> or download
+}
+
+const link = document.createElement('a');
+link.download = 'letter.png';
+link.href = createLetterImage('F');
+link.click();
+    </script>
+</body>
+</html>
